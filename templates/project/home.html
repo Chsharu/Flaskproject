@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bookstore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('books') }}">Books</a></li>
+                <li><a href="{{ url_for('add_book') }}">Add New Book</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <h1>Welcome to the Bookstore</h1>
+        <p>Explore our collection of books, add new books, and manage your library!</p>
+        
+        <div class="buttons">
+            <a href="{{ url_for('books') }}" class="btn">View Books</a>
+            <a href="{{ url_for('add_book') }}" class="btn">Add a New Book</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Bookstore</p>
+    </footer>
+</body>
+</html>

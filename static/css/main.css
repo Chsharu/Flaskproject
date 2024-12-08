@@ -1,36 +1,99 @@
+/* General Styles */
 body, html {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: rgb(105, 112, 97);
+    height: 100%;
 }
 
 .content {
     margin: 0 auto;
-    width: 400px;
+    width: 80%;  /* Increased width for better content spacing */
+    max-width: 1200px;  /* Limit max width for better layout */
+    padding: 20px;  /* Added padding around content */
+}
+
+/* Table Styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
 }
 
 table, td, th {
     border: 1px solid #aaa;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    height: 30px;
-}
-
-td {
+th, td {
     text-align: center;
-    padding: 5px;
+    padding: 10px;  /* Increased padding for better cell spacing */
 }
 
+/* Header Cells */
+th {
+    background-color: #f0f0f0;  /* Light background for headers */
+    font-size: 1.1rem;  /* Slightly larger text for headers */
+    color: #333;  /* Darker text for contrast */
+    height: 40px;  /* Increased height for header row */
+}
+
+/* Data Cells */
+td {
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;  /* Standard text size */
+}
+
+/* Form Styles */
 .form {
-    margin-top: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;  /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Added shadow for better visibility */
 }
 
+.form input, .form button {
+    width: 100%;  /* Full width inputs and button */
+    padding: 10px;
+    margin-bottom: 10px;  /* Space between form elements */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form input[type="text"], .form input[type="date"], .form input[type="number"] {
+    font-size: 1rem;
+}
+
+.form button {
+    background-color: #28a745;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #218838;  /* Hover effect on submit button */
+}
+
+/* Content Box */
 #content {
-    width: 70%;
+    width: 80%;  /* Width adjusted for consistency with .content */
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content {
+        width: 95%;
+    }
+
+    table, td, th {
+        font-size: 0.9rem;  /* Smaller font size for mobile screens */
+    }
+
+    .form input, .form button {
+        width: 100%;
+    }
 }
