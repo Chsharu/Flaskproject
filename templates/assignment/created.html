@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #dfd2b4;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Subject List</h1>
+        <div class="form-section">
+            <label for="subject-name">Subject Name:</label>
+            <input type="text" id="subject-name" placeholder="Enter subject name">
+
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+            </select>
+
+           
+
+           
+            <button onclick="addSubject()">Add Subject</button>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search by subject name...">
+            <button onclick="searchSubject()">Search</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th>Status</th>
+                    
+                    <th>Subject Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="subject-list">
+                <!-- Subject rows will appear here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const subjects = [];
+
+        function addSubject() {
+            const name = document.getElementById('subject-name').value;
+            const status = document.getElementById('status').value;
+            
+            if (name && status ) {
+                const subject = { name, status };
+                subjects.push(subject);
+                renderSubjects();
+                clearForm();
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+        function renderSubjects() {
+            const tbody = document.getElementById('subject-list');
+            tbody.innerHTML = '';
+            subjects.forEach((subject, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                       
+                        <td>${subject.status}</td>
+                        
+                        <td>${subject.name}</td>
+                        <td class="actions">
+                            <button onclick="updateSubject(${index})">Update</button>
+                            <button onclick="deleteSubject(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateSubject(index) {
+            const subject = subjects[index];
+            document.getElementById('subject-name').value = subject.name;
+            document.getElementById('status').value = subject.status;
+         
+
+            deleteSubject(index);
+        }
+
+        function deleteSubject(index) {
+            subjects.splice(index, 1);
+            renderSubjects();
+        }
+
+        function searchSubject() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const tbody = document.getElementById('subject-list');
+            tbody.innerHTML = '';
+            subjects
+                .filter(subject => subject.name.toLowerCase().includes(query))
+                .forEach((subject, index) => {
+                    tbody.innerHTML += `
+                        <tr>
+                  
+                            <td>${subject.status}</td>
+                         
+                            <td>${subject.name}</td>
+                            <td class="actions">
+                                <button onclick="updateSubject(${index})">Update</button>
+                                <button onclick="deleteSubject(${index})">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+        }
+
+        function clearForm() {
+            document.getElementById('subject-name').value = '';
+            document.getElementById('status').value = 'Pending';
+          
+        }
+    </script>
+</body>
+</html>
